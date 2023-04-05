@@ -25,8 +25,6 @@ RDEPEND="
 	test? ( dev-libs/boost[python] )
 "
 DEPEND="${RDEPEND}
-	dev-libs/boost[threads]
-	dev-python/setuptools
 	dev-python/setuptools
 "
 

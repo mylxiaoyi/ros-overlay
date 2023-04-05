@@ -1,11 +1,11 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
-CMAKE_REMOVE_MODULES="yes"
+#CMAKE_REMOVE_MODULES="yes"
 CMAKE_REMOVE_MODULES_LIST="FindFreetype FindDoxygen FindZLIB"
-inherit cmake-utils
+inherit cmake
 
 DESCRIPTION="Object-oriented Graphics Rendering Engine"
 HOMEPAGE="https://www.ogre3d.org/"

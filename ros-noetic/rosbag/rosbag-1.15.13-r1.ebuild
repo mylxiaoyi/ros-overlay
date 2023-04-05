@@ -27,9 +27,6 @@ RDEPEND="
 	ros-noetic/xmlrpcpp
 	dev-libs/boost
 	dev-libs/boost[python]
-	dev-libs/boost
-	dev-libs/boost
-	dev-libs/boost[threads]
 	dev-python/python-gnupg
 	dev-python/pycryptodome
 	dev-python/rospkg

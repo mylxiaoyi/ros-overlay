@@ -23,7 +23,7 @@ RDEPEND="
 	ros-noetic/rostime
 	ros-noetic/std_msgs
 	ros-noetic/std_srvs
-	dev-libs/boost[threads]
+	dev-libs/boost
 	dev-qt/qtcore:5
 	dev-qt/qtgui:5
 "

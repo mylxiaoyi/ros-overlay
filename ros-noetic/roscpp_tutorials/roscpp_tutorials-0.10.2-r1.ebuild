@@ -22,7 +22,6 @@ RDEPEND="
 	ros-noetic/rostime
 	ros-noetic/std_msgs
 	dev-libs/boost
-	dev-libs/boost[threads]
 "
 DEPEND="${RDEPEND}
 	ros-noetic/catkin

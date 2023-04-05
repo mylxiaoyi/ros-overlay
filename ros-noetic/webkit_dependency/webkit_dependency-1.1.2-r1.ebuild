@@ -14,8 +14,7 @@ LICENSE="BSD"
 
 KEYWORDS="~x86 ~amd64 ~arm ~arm64"
 RDEPEND="
-	dev-python/PyQt5[webkit]
-	dev-python/PyQt5[webkit]
+	dev-python/PyQt5
 "
 DEPEND="${RDEPEND}
 	ros-noetic/catkin

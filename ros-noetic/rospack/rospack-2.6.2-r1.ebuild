@@ -21,10 +21,9 @@ RDEPEND="
 	dev-libs/boost
 	dev-lang/python
 	dev-python/catkin_pkg
-	dev-util/rosdep
 	dev-lang/python
 	dev-python/catkin_pkg
-	dev-util/rosdep
+	dev-python/rosdep
 	dev-libs/tinyxml2
 	test? ( dev-python/coverage )
 	test? ( dev-python/coverage )

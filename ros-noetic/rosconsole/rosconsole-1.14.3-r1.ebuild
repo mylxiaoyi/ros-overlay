@@ -26,7 +26,6 @@ DEPEND="${RDEPEND}
 	ros-noetic/catkin
 	ros-noetic/rosunit
 	dev-libs/boost
-	dev-libs/boost[threads]
 "
 
 SLOT="0"

@@ -16,8 +16,6 @@ KEYWORDS="~x86 ~amd64 ~arm ~arm64"
 RDEPEND="
 	ros-noetic/cpp_common
 	dev-libs/boost
-	dev-libs/boost
-	dev-libs/boost[threads]
 "
 DEPEND="${RDEPEND}
 	ros-noetic/catkin

@@ -1,0 +1,21 @@
+--- gz-cmake-gz-cmake3_3.0.0.orig/cmake/FindGzOGRE2.cmake	2023-04-04 21:10:38.393089338 +0800
++++ gz-cmake-gz-cmake3_3.0.0/cmake/FindGzOGRE2.cmake	2023-04-04 21:13:11.497916412 +0800
+@@ -148,7 +148,7 @@
+ endmacro()
+ 
+ if (NOT WIN32)
+-  foreach (GZ_OGRE2_PROJECT_NAME "OGRE2" "OGRE-Next")
++  foreach (GZ_OGRE2_PROJECT_NAME "OGRE" "OGRE2" "OGRE-Next")
+     message(STATUS "Looking for OGRE using the name: ${GZ_OGRE2_PROJECT_NAME}")
+     if (GZ_OGRE2_PROJECT_NAME STREQUAL "OGRE2")
+       set(OGRE2_INSTALL_PATH "OGRE-2.${GzOGRE2_FIND_VERSION_MINOR}")
+@@ -160,6 +160,9 @@
+       else()
+         set(OGRE2LIBNAME "Ogre")
+       endif()
++    elseif (GZ_OGRE2_PROJECT_NAME STREQUAL "OGRE")
++      set(OGRE2_INSTALL_PATH "OGRE")
++      set(OGRE2LIBNAME "Ogre")
+     else()
+       # This matches OGRE2.2 debs built in upstream Ubuntu
+       set(OGRE2_INSTALL_PATH "OGRE-Next")

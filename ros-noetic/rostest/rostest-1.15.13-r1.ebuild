@@ -19,7 +19,7 @@ RDEPEND="
 	ros-noetic/rosmaster
 	ros-noetic/rospy
 	ros-noetic/rosunit
-	dev-libs/boost[threads]
+	dev-libs/boost
 "
 DEPEND="${RDEPEND}
 	ros-noetic/catkin

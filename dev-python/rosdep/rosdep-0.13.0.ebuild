@@ -1,5 +1,7 @@
-EAPI=6
-PYTHON_COMPAT=( python{2_7,3_5,3_6,3_7} )
+EAPI=8
+
+DISTUTILS_USE_PEP517=setuptools
+PYTHON_COMPAT=( python3_{8..10} pypy3 )
 
 inherit distutils-r1
 
@@ -14,7 +16,7 @@ KEYWORDS="~amd64 ~x86 ~arm ~arm64"
 DEPEND="dev-python/setuptools[${PYTHON_USEDEP}]
 		>=dev-python/nose-1.0[${PYTHON_USEDEP}]
 		>=dev-python/pyyaml-3.1[${PYTHON_USEDEP}]
-		>=dev-python/rosdistro-0.3.0[${PYTHON_USEDEP}]
+		>=dev-python/rosdistro-0.9.0[${PYTHON_USEDEP}]
 		dev-python/catkin_pkg[${PYTHON_USEDEP}]
 		dev-python/rospkg[${PYTHON_USEDEP}]"
 RDEPEND="${DEPEND}"

@@ -1,8 +1,8 @@
 # Copyright 2020 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
-EAPI=6
-PYTHON_COMPAT=( python{3_5,3_6} )
+EAPI=8
+PYTHON_COMPAT=( python3_{8..10} )
 
 inherit ament-python
 

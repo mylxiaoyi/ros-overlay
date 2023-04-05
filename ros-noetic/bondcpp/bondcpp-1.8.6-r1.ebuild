@@ -19,8 +19,6 @@ RDEPEND="
 	ros-noetic/roscpp
 	ros-noetic/smclib
 	dev-libs/boost
-	dev-libs/boost
-	dev-libs/boost[threads]
 	dev-libs/ossp-uuid
 "
 DEPEND="${RDEPEND}

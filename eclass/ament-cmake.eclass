@@ -41,7 +41,7 @@ AMENT_PYTHON_USEDEP=""
 if [ -n "${PYTHON_COMPAT}" ] ; then
 	PYTHON_ECLASS="python-r1"
 fi
-inherit ${SCM} ${PYTHON_ECLASS} cmake-utils flag-o-matic
+inherit ${SCM} ${PYTHON_ECLASS} cmake flag-o-matic
 
 AMENT_DO_PYTHON_MULTIBUILD=""
 if [ -n "${PYTHON_COMPAT}" ] ; then

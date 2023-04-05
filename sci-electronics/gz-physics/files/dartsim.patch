@@ -1,0 +1,30 @@
+Index: gz-physics-gz-physics6_6.0.0/dartsim/src/SimulationFeatures.cc
+========================================================================================================
+--- gz-physics-gz-physics6_6.0.0.orgin/dartsim/src/SimulationFeatures.cc
++++ gz-physics-gz-physics6_6.0.0/dartsim/src/SimulationFeatures.cc
+@@ -216,9 +216,9 @@
+   typedef FeaturePolicy3d P;
+   typename F::ContactSurfaceParams<P> pGz;
+ 
+-  pGz.frictionCoeff = pDart.mFrictionCoeff;
++  pGz.frictionCoeff = pDart.mPrimaryFrictionCoeff;
+   pGz.secondaryFrictionCoeff = pDart.mSecondaryFrictionCoeff;
+-  pGz.slipCompliance = pDart.mSlipCompliance;
++  pGz.slipCompliance = pDart.mPrimarySlipCompliance;
+   pGz.secondarySlipCompliance = pDart.mSecondarySlipCompliance;
+   pGz.restitutionCoeff = pDart.mRestitutionCoeff;
+   pGz.firstFrictionalDirection = pDart.mFirstFrictionalDirection;
+@@ -231,11 +231,11 @@
+                                 _numContactsOnCollisionObject, pGz);
+ 
+     if (pGz.frictionCoeff)
+-      pDart.mFrictionCoeff = pGz.frictionCoeff.value();
++      pDart.mPrimaryFrictionCoeff = pGz.frictionCoeff.value();
+     if (pGz.secondaryFrictionCoeff)
+       pDart.mSecondaryFrictionCoeff = pGz.secondaryFrictionCoeff.value();
+     if (pGz.slipCompliance)
+-      pDart.mSlipCompliance = pGz.slipCompliance.value();
++      pDart.mPrimarySlipCompliance = pGz.slipCompliance.value();
+     if (pGz.secondarySlipCompliance)
+       pDart.mSecondarySlipCompliance = pGz.secondarySlipCompliance.value();
+     if (pGz.restitutionCoeff)

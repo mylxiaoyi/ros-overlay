@@ -25,7 +25,6 @@ RDEPEND="
 	test? ( ros-noetic/rosnode )
 	test? ( ros-noetic/rosunit )
 	dev-libs/boost
-	dev-libs/boost[threads]
 "
 DEPEND="${RDEPEND}
 	ros-noetic/catkin

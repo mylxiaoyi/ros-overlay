@@ -15,7 +15,6 @@ LICENSE="BSD"
 KEYWORDS="~x86 ~amd64 ~arm ~arm64"
 RDEPEND="
 	dev-libs/boost
-	dev-libs/boost[threads]
 	dev-libs/console_bridge
 	dev-libs/poco
 "
