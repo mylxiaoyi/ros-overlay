@@ -67,3 +67,7 @@ DEPEND="${RDEPEND}
 SLOT="0"
 ROS_DISTRO="noetic"
 ROS_PREFIX="opt/ros/${ROS_DISTRO}"
+
+PATCHES=(
+	${FILESDIR}/python_bindings.patch
+)

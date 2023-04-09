@@ -1,0 +1,62 @@
+--- rosconsole-1.14.3.origin/src/rosconsole/impl/rosconsole_log4cxx.cpp	2020-10-15 00:52:27.000000000 +0800
++++ rosconsole-1.14.3/src/rosconsole/impl/rosconsole_log4cxx.cpp	2023-04-05 16:43:30.339988156 +0800
+@@ -166,7 +166,7 @@
+   }
+ 
+   log4cxx::LoggerPtr logger = log4cxx::Logger::getLogger(ROSCONSOLE_ROOT_LOGGER_NAME);
+-  logger->addAppender(new ROSConsoleStdioAppender);
++  logger->addAppender(std::make_shared<ROSConsoleStdioAppender>());
+ #ifdef _MSC_VER
+   if ( ros_root_cstr != NULL ) {
+ 	  free(ros_root_cstr);
+@@ -184,7 +184,7 @@
+   log4cxx::Logger* logger  = (log4cxx::Logger*)handle;
+   try
+   {
+-    logger->forcedLog(g_level_lookup[level], str, log4cxx::spi::LocationInfo(file, function, line));
++    logger->forcedLog(g_level_lookup[level], str, log4cxx::spi::LocationInfo(file, file, function, line));
+   }
+   catch (std::exception& e)
+   {
+@@ -200,7 +200,7 @@
+ 
+ void* getHandle(const std::string& name)
+ {
+-  return log4cxx::Logger::getLogger(name);
++  return log4cxx::Logger::getLogger(name).get();
+ }
+ 
+ std::string getName(void* handle)
+@@ -216,7 +216,7 @@
+ 
+ bool get_loggers(std::map<std::string, levels::Level>& loggers)
+ {
+-  log4cxx::spi::LoggerRepositoryPtr repo = log4cxx::Logger::getLogger(ROSCONSOLE_ROOT_LOGGER_NAME)->getLoggerRepository();
++  log4cxx::spi::LoggerRepository* repo = log4cxx::Logger::getLogger(ROSCONSOLE_ROOT_LOGGER_NAME)->getLoggerRepository();
+ 
+   log4cxx::LoggerList current_loggers = repo->getCurrentLoggers();
+   log4cxx::LoggerList::iterator it = current_loggers.begin();
+@@ -352,11 +352,11 @@
+   ros::console::LogAppender* appender_;
+ };
+ 
+-Log4cxxAppender* g_log4cxx_appender = 0;
++std::shared_ptr<Log4cxxAppender> g_log4cxx_appender;
+ 
+ void register_appender(LogAppender* appender)
+ {
+-  g_log4cxx_appender = new Log4cxxAppender(appender);
++  g_log4cxx_appender.reset(new Log4cxxAppender(appender));
+   const log4cxx::LoggerPtr& logger = log4cxx::Logger::getLogger(ROSCONSOLE_ROOT_LOGGER_NAME);
+   logger->addAppender(g_log4cxx_appender);
+ }
+@@ -366,8 +366,7 @@
+   {
+     const log4cxx::LoggerPtr& logger = log4cxx::Logger::getLogger(ROSCONSOLE_ROOT_LOGGER_NAME);
+     logger->removeAppender(g_log4cxx_appender);
+-    delete g_log4cxx_appender;
+-    g_log4cxx_appender = 0;
++    g_log4cxx_appender.reset();
+   }
+ }
+ void shutdown()

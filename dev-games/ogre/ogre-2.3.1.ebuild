@@ -32,6 +32,7 @@ RDEPEND="
 	dev-games/ois
 	dev-libs/zziplib
 	media-libs/freetype:2
+	media-libs/libsdl2
 	x11-libs/libX11
 	x11-libs/libXaw
 	x11-libs/libXrandr
@@ -172,6 +173,7 @@ src_configure() {
 #
 	local mycmakeargs=(
 		"-DOGRE_BUILD_COMPONENT_PLANAR_REFLECTIONS=yes"
+		"-DOpenGL_GL_PREFERENCE=GLVND"
 	)
 	cmake_src_configure
 }

@@ -138,7 +138,7 @@ ros-cmake_src_prepare() {
 	# If no multibuild, just use cmake IN_SOURCE support
 	[ -n "${CATKIN_IN_SOURCE_BUILD}" ] && [ -z "${CATKIN_DO_PYTHON_MULTIBUILD}" ] && export CMAKE_IN_SOURCE_BUILD=yes
 
-	cmake-utils_src_prepare
+	cmake_src_prepare
 
 	# If python multibuild, copy the sources
 	[ -n "${CATKIN_IN_SOURCE_BUILD}" ] && [ -n "${CATKIN_DO_PYTHON_MULTIBUILD}" ] && python_copy_sources
@@ -168,12 +168,13 @@ ros-cmake_src_configure_internal() {
 			"-DPYTHON_INSTALL_DIR=${lib_str}/${EPYTHON%/}/site-packages"
 			"${mycmakeargs[@]}"
 		)
-		python_export PYTHON_SCRIPTDIR
+		#python_export PYTHON_SCRIPTDIR
+		python_get_sitedir PYTHON_SCRIPTDIR
 		if [ -n "${CATKIN_IN_SOURCE_BUILD}" ] ; then
 			export CMAKE_USE_DIR="${BUILD_DIR}"
 		fi
 	fi
-	cmake-utils_src_configure "${@}"
+	cmake_src_configure "${@}"
 }
 
 # @VARIABLE: mycatkincmakeargs
@@ -215,7 +216,7 @@ ros-cmake_src_configure() {
 		-DCMAKE_INSTALL_PREFIX=${EPREFIX%/}/${ROS_PREFIX}
 		${mycmakeargs[@]}
 	)
-	cmake-utils_src_configure
+	cmake_src_configure
 	if [ -n "${CATKIN_DO_PYTHON_MULTIBUILD}" ] ; then
 		python_foreach_impl ros-cmake_src_configure_internal "${@}"
 	else
@@ -237,9 +238,9 @@ ros-cmake_src_compile() {
 		if [ -n "${CATKIN_IN_SOURCE_BUILD}" ] ; then
 			export CMAKE_USE_DIR="${BUILD_DIR}"
 		fi
-		python_foreach_impl cmake-utils_src_compile "${@}"
+		python_foreach_impl cmake_src_compile "${@}"
 	else
-		cmake-utils_src_compile "${@}"
+		cmake_src_compile "${@}"
 	fi
 }
 
@@ -277,11 +278,12 @@ ros-catkin_src_test() {
 # Decorator around cmake-utils_src_install to ensure python scripts are properly handled w.r.t. python-exec2.
 ros-cmake_src_install_with_python() {
 	python_scriptinto ${EPREFIX%/}/${ROS_PREFIX%/}/bin
-	python_export PYTHON_SCRIPTDIR
+	#python_export PYTHON_SCRIPTDIR
+	python_get_sitedir PYTHON_SCRIPTDIR
 	if [ -n "${CATKIN_IN_SOURCE_BUILD}" ] ; then
 		export CMAKE_USE_DIR="${BUILD_DIR}"
 	fi
-	cmake-utils_src_install "${@}"
+	cmake_src_install "${@}"
 	if [ ! -f "${T}/.catkin_python_symlinks_generated" -a -d "${D}/${PYTHON_SCRIPTDIR}" ]; then
 		dodir /usr/bin
 		for i in "${D}/${PYTHON_SCRIPTDIR}"/* ; do
@@ -298,7 +300,7 @@ ros-cmake_src_install() {
 	if [ -n "${CATKIN_DO_PYTHON_MULTIBUILD}" ] ; then
 		python_foreach_impl ros-cmake_src_install_with_python "${@}"
 	else
-		cmake-utils_src_install "${@}"
+		cmake_src_install "${@}"
 	fi
 }
 
